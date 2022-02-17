@@ -7,18 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 const router = express.Router();
 
 // mock db
-const users = [
-    {
-        firstName:"John",
-        lastName:"Doe",
-        age:"25"
-    },
-    {
-        firstName:"Wa",
-        lastName:"Wawewa",
-        age:"23"
-    }
-]
+let users = []
 
 // all routes here start with '/users'
 router.get('/', (req, res) => {
@@ -40,6 +29,27 @@ router.post('/', (req, res) => {
     // response send message
     res.send(`Player: ${user.firstName} ${user.lastName} added to the matrix`)
 })
+
+
+router.get('/:id', (req,res) => {
+    // destructure request parameters and find id
+    const { id } = req.params
+
+    const foundUser = users.find((user) => user.id === id)
+
+    res.send(foundUser)
+})
+
+router.delete('/:id', (req,res) => {
+    // destructure request parameters and find id
+    const { id } = req.params;
+    // filter thru DB and find our current user by id 
+    // 
+    users = users.filter((user) => user.id != id)
+
+    res.send(`Player: ${id} eliminated from the matrix`)
+})
+
 
 // export this router
 export default router
