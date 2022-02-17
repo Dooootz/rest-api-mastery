@@ -3,52 +3,28 @@ import express from "express";
 // uuid generates random endpoints in the URI
 import { v4 as uuidv4 } from 'uuid';
 
+import { createUser, getUsers, getUserById, deleteUser, updateUser } from '../controllers/users'
+
 // create Router
 const router = express.Router();
 
 // mock db
 let users = []
 
-// all routes here start with '/users'
-router.get('/', (req, res) => {
-    console.log(users)
-    res.send(users)
-})
+// GET users endpoint ---------------------
+router.get('/', getUsers)
 
-// POST method on /users endpoint
-router.post('/', (req, res) => {
-    // user = entire request body
-    const user = req.body
+// POST method on /users endpoint ---------------------
+router.post('/', createUser)
 
-    // const userId = uuidv4();
-    // const userWithId = { ...user, id: userId }
-    // users.push(userWithId);
-    // --- refactored code below ---
-    users.push({ ...user, id: uuidv4() });
+// create route that GET's users by id --------------------- 
+router.get('/:id', getUserById)
 
-    // response send message
-    res.send(`Player: ${user.firstName} ${user.lastName} added to the matrix`)
-})
+// create route that DELETE's user by id ---------------------
+router.delete('/:id', deleteUser)
 
-
-router.get('/:id', (req,res) => {
-    // destructure request parameters and find id
-    const { id } = req.params
-
-    const foundUser = users.find((user) => user.id === id)
-
-    res.send(foundUser)
-})
-
-router.delete('/:id', (req,res) => {
-    // destructure request parameters and find id
-    const { id } = req.params;
-    // filter thru DB and find our current user by id 
-    // 
-    users = users.filter((user) => user.id != id)
-
-    res.send(`Player: ${id} eliminated from the matrix`)
-})
+// create route that PATCH / UPDATE's user by id ---------------------
+router.patch('/:id', updateUser)
 
 
 // export this router
