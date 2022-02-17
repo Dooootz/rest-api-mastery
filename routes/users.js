@@ -1,15 +1,13 @@
 // import express...
 import express from "express";
 // uuid generates random endpoints in the URI
-import { v4 as uuidv4 } from 'uuid';
 
-import { createUser, getUsers, getUserById, deleteUser, updateUser } from '../controllers/users'
+
+import { createUser, getUsers, getUserById, deleteUser, updateUser } from '../controllers/users.js'
 
 // create Router
 const router = express.Router();
 
-// mock db
-let users = []
 
 // GET users endpoint ---------------------
 router.get('/', getUsers)

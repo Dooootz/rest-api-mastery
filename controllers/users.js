@@ -1,3 +1,8 @@
+import { v4 as uuidv4 } from 'uuid';
+
+// mock db
+let users = []
+
 // CREATE user #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=
 export const createUser = (req, res) => {
     // user = entire request body
@@ -21,7 +26,7 @@ export const createUser = (req, res) => {
 }
 
 // GET users #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=
-export const getUser = (req, res) => {
+export const getUsers = (req, res) => {
     console.log(users)
     res.send(users)
 }
