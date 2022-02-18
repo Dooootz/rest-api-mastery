@@ -2,12 +2,12 @@
 import express from 'express';
 // bodyParser allows us to parse requests & response bodies as JSON
 import bodyParser from 'body-parser';
-
+// imports pre set from route folder 
 import usersRoutes from './routes/users.js'
 
-// create express app = app
+// initialize express app = app
 const app = express();
-// instatiate PORT number
+// instantiate PORT number
 const PORT = 5000;
 
 // use bodyParser to parse req & res bodies as JSON 
