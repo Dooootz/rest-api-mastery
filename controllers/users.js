@@ -71,13 +71,16 @@ export const updateUser = (req,res) => {
     const { id } = req.params
     const { firstName, lastName, age } = req.body
 
-    // search array (Database) and find our matched user in the DB & store that user as a contant variable 
+    // search and find our matched user in the DB & store that DB user as a contant variable 
     const user = users.find((user) => user.id === id)
 
-    // if the firstName matches 
+    // if they change the firstname... then update the firstName in the DB
     if(firstName) user.firstName = firstName;
+      // if they change the lastname... then update the lastName in the DB
     if(lastName) user.lastName = lastName;
+      // if they change the age... then update the age in the DB
     if(age) user.age = age;
 
+    // render template string message to the page
     res.send(`Player: ${id} Update Status:[COMPLETE]!`)
 }

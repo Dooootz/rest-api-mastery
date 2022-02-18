@@ -13,10 +13,11 @@ const PORT = 5000;
 // use bodyParser to parse req & res bodies as JSON 
 app.use(bodyParser.json());
 
+// create /users endpoint & takes a callback function which is handles in the controller 
 app.use('/users', usersRoutes)
 
-// create route - we are expecting a GET request
-// first parameter is the PATH or endpoint
+// create '/' home enpdpoint - we are expecting a GET request
+// first parameter is the PATH or endpoint [ home ]
 // second parameter is a callback function that expects 2 parameters - req & res 
 app.get('/', (req, res) => {
     console.log('[TEST]!')
